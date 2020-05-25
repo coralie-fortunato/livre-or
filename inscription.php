@@ -6,7 +6,7 @@ if (isset($_POST["valider"])){
     $login=htmlentities($_POST["login"]);
     $password= htmlentities($_POST["password"]);
     $password_confirm= htmlentities($_POST["confirm_password"]);
-    $req_login="SELECT `login` FROM `utilisateurs` WHERE 'login' ='$login'";
+    $req_login="SELECT * FROM `utilisateurs` WHERE login ='$login'";
     $query_login=mysqli_query($db, $req_login);
     $compare_login= mysqli_fetch_all($query_login);
     if(count($compare_login) != 0){

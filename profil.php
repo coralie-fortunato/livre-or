@@ -18,11 +18,11 @@ if(isset($_POST["valider"])){
     //$password_confirm= htmlentities($_POST["confirm_password"]);
 
     if(!empty($login2)){
-        $req_login="SELECT `login` FROM `utilisateurs` WHERE login='.$login2'";
+        $req_login="SELECT * FROM `utilisateurs` WHERE login='$login2'";
         $query_login= mysqli_query($db, $req_login);
         $compare_login=mysqli_fetch_all($query_login);
-        var_dump($compare_login);
-        if(count($compare_login)!=0){
+        
+        if(count($compare_login) != 0){
             $error_login="Désolé ce login est déjà utilsé";
         }
         else{
