@@ -1,11 +1,11 @@
 <?php
 session_start();
 $db= mysqli_connect("localhost","root","","livreor");
-
+var_dump($_SESSION["id"]);
 $login=$_SESSION['login'];
-var_dump($login);
+
 $error_login=null;
-$success_message=null;
+$error_pwd= null;
 if(isset($login)){
 $req_user_data="SELECT `login`, `password` FROM `utilisateurs` WHERE `login`= '".$_SESSION["login"]."'";
 $query=mysqli_query($db,$req_user_data);
@@ -14,8 +14,7 @@ $user_data=mysqli_fetch_assoc($query);
 }
 if(isset($_POST["valider"])){
     $login2=htmlentities($_POST["new_login"]);
-    //$password= htmlentities($_POST["password"]);
-    //$password_confirm= htmlentities($_POST["confirm_password"]);
+    
 
     if(!empty($login2)){
         $req_login="SELECT * FROM `utilisateurs` WHERE login='$login2'";
@@ -28,11 +27,28 @@ if(isset($_POST["valider"])){
         else{
             $req_update="UPDATE `utilisateurs` SET `login`= '$login2' WHERE login= '$login'" ;
             mysqli_query($db, $req_update);
-            $success_message= "Votre profil a été mis à jour avec succès";
+           
             $_SESSION["login"]=$login2;
             header("Location:profil.php");
         }
     }
+  
+}
+if(isset($_POST["modifier"])){
+    $password= htmlentities($_POST["password"]);
+    $password_confirm= htmlentities($_POST["password_confirm"]);
+    if(!empty($password) && !empty($password_confirm)){
+        if($password === $password_confirm ){
+            $req_update2="UPDATE `utilisateurs` SET `password`= '$password_confirm' WHERE login= '$login'" ;
+            mysqli_query($db, $req_update2);
+            header("Location:profil.php");
+        }
+        else{
+            
+            $error_pwd="Mot de passe différent";
+        }
+    }
+
 }
 
 ?>
@@ -43,22 +59,28 @@ if(isset($_POST["valider"])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Profil</title>
 </head>
 <body>
-    <header></header>
+    <header>
+        <a href="logout.php">Déconnexion</a>
+    </header>
     <main class="main_profile">
         <h1>Modifier votre profil</h1>
+
         <?php if($error_login): ?>
         <div class="error">
           <p><?=  $error_login ?></p>
         </div>
         <?php endif; ?>
-        <?php if($success_message): ?>
+
+        <?php if($error_pwd): ?>
         <div class="error">
-          <p><?=  $success_message ?></p>
+          <p><?=  $error_pwd ?></p>
         </div>
         <?php endif; ?>
+
+
     <form action="" method="post">
     <?php if(!isset($_GET["login"])):?>
         <div class="form_items">
@@ -70,8 +92,9 @@ if(isset($_POST["valider"])){
         <?php if(isset($_GET["login"])):?>
         <div class="form_items">
             
-            <input type="text" name="new_login" class="input_profile" placeholder="Votre nouveau login">
-          
+                <input type="text" name="new_login" class="input_profile" placeholder="Votre nouveau login">
+                
+            
         </div>
         <?php endif; ?>
         <?php if(!isset($_GET["password"])):?>
@@ -84,12 +107,17 @@ if(isset($_POST["valider"])){
         <?php if(isset($_GET["password"])):?>
         <div class="form_items">
             <input type="password" name="password" class="input_profile" placeholder="Votre nouveau mot de passe">
-            <input type="password" name="password" class="input_profile" placeholder="Confirmer votre nouveau mot de passe">
+            <input type="password" name="password_confirm" class="input_profile" placeholder="Confirmer votre nouveau mot de passe">
+            
            
         </div>
         <?php endif; ?>
-        <button type="submit" name="valider">Enregistrer les modifications</button>
-        
+        <?php if(isset($_GET["login"])):?>
+            <button type="submit" name="valider">Enregistrer les modifications</button>
+        <?php endif; ?>
+        <?php if(isset($_GET["password"])):?>
+            <button type="submit" name="modifier">Enregistrer les modifications</button>
+        <?php endif; ?>
      
     </form>
     </main>

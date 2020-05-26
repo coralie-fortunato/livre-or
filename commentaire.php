@@ -1,4 +1,19 @@
-<?php ?>
+<meta charset="UTF-8" /> 
+<?php
+session_start();
+date_default_timezone_set('Europe/Paris');
+$db= mysqli_connect("localhost","root","","livreor");
+var_dump($_SESSION["id"]);
+
+if(isset($_POST['valider'])){
+    $message=htmlspecialchars($_POST['message']);
+    $id_user=$_POST['id_user'];
+    $date= $_POST['date'];
+   $add_comment=" INSERT INTO `commentaires`( `commentaire`, `id_utilisateur`, `date`) VALUES ('$message', '$id_user', '$date')";
+   mysqli_query($db, $add_comment);
+   header("Location: livre-or.php");
+}
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,8 +28,10 @@
     <main>
         <h1>Ajouter un commentaire</h1>
         <form action="" method="post">
-            <textarea name="message" placeholder="Votre message ici..."></textarea>
-            <button type="submit" name="valider">Envoyer</button>
+            <input type="hidden" name='id_user' value=<?= $_SESSION["id"]?>>
+            <input type="hidden" name='date' value=<?= date('Y-m-d:i:s')?>>
+            <textarea name='message' placeholder="Votre message ici..."></textarea>
+            <button type="submit" name='valider'>Envoyer</button>
         </form>
     </main>
     <footer></footer>

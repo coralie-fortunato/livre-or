@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 25 mai 2020 à 08:11
+-- Généré le :  mar. 26 mai 2020 à 13:19
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -33,9 +33,9 @@ CREATE TABLE IF NOT EXISTS `commentaires` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `commentaire` text NOT NULL,
   `id_utilisateur` int(11) NOT NULL,
-  `date` date NOT NULL,
+  `date` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf32;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `login` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf32;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -7,6 +7,7 @@ $error=null;
    if(!empty($_POST["login"]) && !empty($_POST["password"])){
         $login=htmlentities($_POST["login"]);
         $password= htmlentities($_POST["password"]);
+        
         $req_connect= "SELECT * FROM `utilisateurs` WHERE `login` = '$login' AND `password` = '$password' " ;
         $query_connect = mysqli_query($db,$req_connect);
         $data_users = mysqli_fetch_all($query_connect);
@@ -16,7 +17,12 @@ $error=null;
         }
         else{
             session_start();
+           
             $_SESSION["login"]= $login;
+            $req_id= "SELECT id FROM `utilisateurs` WHERE `login` = '$login'";
+            $query_id = mysqli_query($db,$req_id);
+            $id_users = mysqli_fetch_assoc($query_id);
+            $_SESSION["id"]=$id_users['id'];
             header("Location: profil.php");
         }
     }
