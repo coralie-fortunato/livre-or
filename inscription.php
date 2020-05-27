@@ -1,4 +1,5 @@
 <?php 
+session_start();
 $db= mysqli_connect("localhost","root","","livreor");
 $error_login=null;
 $error_password=null;
@@ -40,7 +41,7 @@ if (isset($_POST["valider"])){
     <title>Inscription</title>
 </head>
 <body>
-    <header></header>
+    <header><?php include("header.php");?> </header>
     <main class="main_form">
         <h1>Inscription</h1>
         <?php if($error_login): ?>

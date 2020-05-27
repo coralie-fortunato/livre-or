@@ -1,9 +1,13 @@
 <meta charset="UTF-8" /> 
 <?php
 session_start();
+if(!isset($_SESSION["id"])){
+    header("Location:index.php");
+}
+
 date_default_timezone_set('Europe/Paris');
 $db= mysqli_connect("localhost","root","","livreor");
-var_dump($_SESSION["id"]);
+
 
 if(isset($_POST['valider'])){
     $message=htmlspecialchars($_POST['message']);
@@ -24,7 +28,7 @@ if(isset($_POST['valider'])){
     <title>Ajouter un commentaire</title>
 </head>
 <body>
-    <header></header>
+    <header><?php include("header.php");?></header>
     <main>
         <h1>Ajouter un commentaire</h1>
         <form action="" method="post">

@@ -23,7 +23,8 @@ $error=null;
             $query_id = mysqli_query($db,$req_id);
             $id_users = mysqli_fetch_assoc($query_id);
             $_SESSION["id"]=$id_users['id'];
-            header("Location: profil.php");
+    
+            header("Location: index.php");
         }
     }
 
@@ -40,7 +41,7 @@ $error=null;
     <title>Connexion</title>
 </head>
 <body>
-    <header></header>
+    <header><?php include("header.php");?>  </header>
     <main class="main_form">
         <h1>Se connecter</h1>
         <?php if($error): ?>

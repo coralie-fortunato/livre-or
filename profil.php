@@ -1,11 +1,12 @@
 <?php
 session_start();
 $db= mysqli_connect("localhost","root","","livreor");
-var_dump($_SESSION["id"]);
 $login=$_SESSION['login'];
-
 $error_login=null;
 $error_pwd= null;
+
+
+
 if(isset($login)){
 $req_user_data="SELECT `login`, `password` FROM `utilisateurs` WHERE `login`= '".$_SESSION["login"]."'";
 $query=mysqli_query($db,$req_user_data);
@@ -29,10 +30,11 @@ if(isset($_POST["valider"])){
             mysqli_query($db, $req_update);
            
             $_SESSION["login"]=$login2;
-            header("Location:profil.php");
+            header("Location:profil.php?success");
+            
         }
     }
-  
+   
 }
 if(isset($_POST["modifier"])){
     $password= htmlentities($_POST["password"]);
@@ -41,7 +43,7 @@ if(isset($_POST["modifier"])){
         if($password === $password_confirm ){
             $req_update2="UPDATE `utilisateurs` SET `password`= '$password_confirm' WHERE login= '$login'" ;
             mysqli_query($db, $req_update2);
-            header("Location:profil.php");
+            header("Location:profil.php?success");
         }
         else{
             
@@ -63,9 +65,9 @@ if(isset($_POST["modifier"])){
 </head>
 <body>
     <header>
-        <a href="logout.php">Déconnexion</a>
+    <?php include("header.php");?>  
     </header>
-    <main class="main_profile">
+    <main class="main_form">
         <h1>Modifier votre profil</h1>
 
         <?php if($error_login): ?>
@@ -77,6 +79,11 @@ if(isset($_POST["modifier"])){
         <?php if($error_pwd): ?>
         <div class="error">
           <p><?=  $error_pwd ?></p>
+        </div>
+        <?php endif; ?>
+        <?php if(isset($_GET["success"])):?>
+        <div class="success">
+          <p><?php echo "Votre profil a été mis a jour avec succès" ?></p>
         </div>
         <?php endif; ?>
 
@@ -92,7 +99,7 @@ if(isset($_POST["modifier"])){
         <?php if(isset($_GET["login"])):?>
         <div class="form_items">
             
-                <input type="text" name="new_login" class="input_profile" placeholder="Votre nouveau login">
+                <input type="text" name="new_login" class="input_update" placeholder="Votre nouveau login">
                 
             
         </div>
@@ -105,18 +112,18 @@ if(isset($_POST["modifier"])){
         </div>
         <?php endif; ?>
         <?php if(isset($_GET["password"])):?>
-        <div class="form_items">
-            <input type="password" name="password" class="input_profile" placeholder="Votre nouveau mot de passe">
-            <input type="password" name="password_confirm" class="input_profile" placeholder="Confirmer votre nouveau mot de passe">
+        <div class="form_pwds">
+            <input type="password" name="password" class="input_update" placeholder="Votre nouveau mot de passe">
+            <input type="password" name="password_confirm" class="input_update" placeholder="Confirmer votre nouveau mot de passe">
             
            
         </div>
         <?php endif; ?>
         <?php if(isset($_GET["login"])):?>
-            <button type="submit" name="valider">Enregistrer les modifications</button>
+            <button type="submit" name="valider" class="update_profile">Enregistrer les modifications</button>
         <?php endif; ?>
         <?php if(isset($_GET["password"])):?>
-            <button type="submit" name="modifier">Enregistrer les modifications</button>
+            <button type="submit" name="modifier" class="update_profile">Enregistrer les modifications</button>
         <?php endif; ?>
      
     </form>

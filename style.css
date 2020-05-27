@@ -1,11 +1,72 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
 *{
     font-family: 'Oswald', sans-serif;
     box-sizing: border-box;
     text-align: center;
+    margin: 0;
+    padding: 0; 
 }
 
 
+/*HEADER*/
+
+header{
+    
+    background: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+header h1{
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    font-size: 3em;
+}
+nav{
+    padding: 1%;
+}
+nav a {
+    text-decoration: none;
+    margin: 2%;
+    padding: 2%;
+    color: white;
+    font-weight: bold;
+    
+}
+/*FIN HEADER*/
+
+/*PAGE INDEX*/
+.main_index{
+    background: url(src/img/notebook-731212_1920.jpg) no-repeat center;
+    background-size: cover;
+   
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main_index a {
+    text-decoration: none;
+}
+.main_title{
+    width: 50%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    background: RGBA(0,0,0,0.21);
+   
+}
+.main_title h1{
+    color: white;
+    width:100%;
+    font-family:'Dancing Script', cursive ;
+    font-size: 4em;
+    
+    
+}
+/*FORMULAIRE*/
 form{
     display: flex;
     flex-direction: column;
@@ -53,4 +114,135 @@ textarea{
     width: 70%;
     height: 20vh;
     margin-bottom: 5vh;
+}
+
+/*Style message d'erreur ou de succès*/
+.error{
+    background: #f8d7da;
+    width:50%;
+    margin: auto;
+    margin-bottom: 1em;
+  
+}
+.success{
+    background: #d4edda;
+    padding: 1%;
+    width:50%;
+    margin: auto;
+    margin-bottom: 1em;
+}
+/*PAGE LIVRE OR*/
+
+.container{
+    width: 70%;
+   
+    margin-top: 2em;
+    margin-bottom: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+.comments:nth-child(odd){
+    background:#45D6D6;
+}
+.comments:nth-child(even){
+    background: #2CBBBB;
+}
+
+.comments{
+    width: 70%;
+    margin: auto;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.comment_info{
+    text-align: left;
+    width: 100%;
+    line-height: 150%;
+}
+
+.login{
+    color:red;
+    font-style: italic;
+    
+}
+.datetime{
+    font-style: italic;
+}
+.text{
+    text-align: justify;
+}
+.add_comment a{
+    padding: 10px;
+    background: #2CBBBB;
+    text-decoration: none;
+    color:white;
+    font-weight: bold;
+}
+.add_comment:hover{
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+.connect_subcribe{
+    margin: 2%;
+}
+.connect_subcribe a{
+    text-decoration: none;
+    color:#2CBBBB;
+    
+}
+
+
+/*PAGE PROFIL*/
+.main_form {
+    height: 100vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   
+}
+.main_profile h1{
+    margin: 1em;
+}
+.main_profile form{
+    height: 80%;
+}
+.form_items{
+    width:50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+   
+}
+.form_items a{
+    box-shadow: inset 0px 1px 0px 0px #45D6D6;
+	background-color: #2CBBBB;
+	border: 1px solid #27A0A0;
+	display: inline-block;
+	cursor: pointer;
+	color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+	padding: 8px 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.form_items label{
+    width: 20%;
+}
+.update_profile{
+    margin: 2em;
+}
+.input_update{
+    width:50%
+}
+.form_pwds{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
 }
