@@ -38,6 +38,7 @@ if(isset($_POST["valider"])){
 }
 if(isset($_POST["modifier"])){
     $password= htmlentities($_POST["password"]);
+    $pwd_hash=password_hash($password, PASSWORD_DEFAULT, ['cost' => 12]);
     $password_confirm= htmlentities($_POST["password_confirm"]);
     if(!empty($password) && !empty($password_confirm)){
         if($password === $password_confirm ){

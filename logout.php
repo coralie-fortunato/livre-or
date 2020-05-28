@@ -2,5 +2,5 @@
 session_start();
 unset($_SESSION["login"]);
 unset($_SESSION["id"]);
-header("Location: connexion.php");
+header("Location: index.php");
 ?>

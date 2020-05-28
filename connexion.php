@@ -3,19 +3,18 @@ session_start();
 $db= mysqli_connect("localhost","root","","livreor");
 
 $error=null;
-
+if(isset($_POST["connect"])){
    if(!empty($_POST["login"]) && !empty($_POST["password"])){
         $login=htmlentities($_POST["login"]);
         $password= htmlentities($_POST["password"]);
         
-        $req_connect= "SELECT * FROM `utilisateurs` WHERE `login` = '$login' AND `password` = '$password' " ;
+        $req_connect= "SELECT * FROM `utilisateurs` WHERE `login` = '$login' " ;
         $query_connect = mysqli_query($db,$req_connect);
-        $data_users = mysqli_fetch_all($query_connect);
-       
-       if(count($data_users) == 0){
+        $data_users = mysqli_fetch_all($query_connect);}
+        if(count($data_users) == 0){
             $error="Login ou mot de passe incorrect";
         }
-        else{
+        elseif(password_verify($password, $data_users[0][2])){
             session_start();
            
             $_SESSION["login"]= $login;
@@ -26,9 +25,12 @@ $error=null;
     
             header("Location: index.php");
         }
-    }
+        else{
+            $error="Login ou mot de passe incorrect";
+        }
+        
 
-
+}   
 
 ?>
 

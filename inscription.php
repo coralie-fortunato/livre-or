@@ -6,7 +6,9 @@ $error_password=null;
 if (isset($_POST["valider"])){
     $login=htmlentities($_POST["login"]);
     $password= htmlentities($_POST["password"]);
+    $pwd_hash = password_hash($password, PASSWORD_DEFAULT, ['cost' => 12]);
     $password_confirm= htmlentities($_POST["confirm_password"]);
+    
     $req_login="SELECT * FROM `utilisateurs` WHERE login ='$login'";
     $query_login=mysqli_query($db, $req_login);
     $compare_login= mysqli_fetch_all($query_login);
@@ -15,7 +17,7 @@ if (isset($_POST["valider"])){
     }
     else{
         if($password === $password_confirm){
-            $req_register="INSERT INTO `utilisateurs`(`login`, `password`) VALUES ('$login','$password')";
+            $req_register="INSERT INTO `utilisateurs`(`login`, `password`) VALUES ('$login','$pwd_hash')";
             mysqli_query($db, $req_register);
             header("Location: connexion.php");
         }

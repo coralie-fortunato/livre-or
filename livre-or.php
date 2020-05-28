@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+date_default_timezone_set('Europe/Paris');
 $db= mysqli_connect("localhost","root","","livreor");
 $req="SELECT login, commentaire, date FROM utilisateurs 
       LEFT JOIN commentaires ON utilisateurs.id = commentaires.id_utilisateur ORDER BY commentaires.id DESC";
@@ -26,9 +28,11 @@ $data=mysqli_fetch_all($query,MYSQLI_ASSOC);
         <div class="container">
             <?php 
             for($i=0; $i <count($data); $i++){
+            $date_us_format=$data[$i]["date"];
+           $date_new_format= date('d/m/Y à H:i:s', strtotime($date_us_format));
             ?>
             <div class="comments">
-            <p class="comment_info">Posté le <span class="datetime"> <?= $data[$i]["date"]?></span> par <span class="login"><?= $data[$i]["login"]?></span> </p>
+            <p class="comment_info">Posté le <span class="datetime"> <?= $date_new_format?></span> par <span class="login"><?= $data[$i]["login"]?></span> </p>
             <p class="text"><?= $data[$i]["commentaire"]?></p>
             </p>
             </div>

@@ -71,11 +71,11 @@ form{
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    width:70%
 }
 
 input{
-    width:60%;
+    width:50%;
     margin: 10px;
     height: 30px;
     text-align: center;
@@ -113,22 +113,24 @@ textarea{
     font-size: large;
     width: 70%;
     height: 20vh;
+    margin-top: 5vh;
     margin-bottom: 5vh;
 }
 
 /*Style message d'erreur ou de succès*/
 .error{
     background: #f8d7da;
-    width:50%;
-    margin: auto;
+    width:30%;
+    margin-top: 1em;
     margin-bottom: 1em;
+    
+   
   
 }
 .success{
     background: #d4edda;
-    padding: 1%;
-    width:50%;
-    margin: auto;
+    width:30%;
+    margin-top: 1em;
     margin-bottom: 1em;
 }
 /*PAGE LIVRE OR*/
@@ -202,6 +204,7 @@ textarea{
    display: flex;
    flex-direction: column;
    justify-content: center;
+   align-items: center;
    
 }
 .main_profile h1{
