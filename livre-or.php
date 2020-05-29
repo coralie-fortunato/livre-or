@@ -23,7 +23,7 @@ $data=mysqli_fetch_all($query,MYSQLI_ASSOC);
     <header>
         <?php include("header.php");?>  
     </header>
-    <main class="main-book">
+    <main class="main_book">
         <h1>Vos messages</h1>
         <div class="container">
             <?php 
@@ -49,6 +49,6 @@ $data=mysqli_fetch_all($query,MYSQLI_ASSOC);
     </div> 
     <?php endif ?>   
     </main>
-    <footer></footer>
+    <footer><?php include("footer.php");?></footer>
 </body>
 </html>

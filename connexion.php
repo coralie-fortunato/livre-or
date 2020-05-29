@@ -3,6 +3,7 @@ session_start();
 $db= mysqli_connect("localhost","root","","livreor");
 
 $error=null;
+
 if(isset($_POST["connect"])){
    if(!empty($_POST["login"]) && !empty($_POST["password"])){
         $login=htmlentities($_POST["login"]);
@@ -17,10 +18,10 @@ if(isset($_POST["connect"])){
         elseif(password_verify($password, $data_users[0][2])){
             session_start();
            
-            $_SESSION["login"]= $login;
             $req_id= "SELECT id FROM `utilisateurs` WHERE `login` = '$login'";
             $query_id = mysqli_query($db,$req_id);
             $id_users = mysqli_fetch_assoc($query_id);
+            $_SESSION["login"]= $login;
             $_SESSION["id"]=$id_users['id'];
     
             header("Location: index.php");
@@ -57,6 +58,6 @@ if(isset($_POST["connect"])){
             <button type="submit" name="connect">Se connecter</button>
         </form>
     </main>
-    <footer></footer>
+    <footer><?php include("footer.php");?></footer>
 </body>
 </html>

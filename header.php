@@ -6,6 +6,7 @@
         <a href="connexion.php">Se connecter</a>
     <?php  endif;?>
     <?php if(isset($_SESSION["login"])):?>
+        <a href="livre-or">Livre d'or</a>
         <a href="profil.php">Mon profil</a>
         <a href="logout.php">Se déconnecter</a>
     <?php  endif;?>

@@ -129,6 +129,6 @@ if(isset($_POST["modifier"])){
      
     </form>
     </main>
-    <footer></footer>
+    <footer><?php include("footer.php");?></footer>
 </body>
 </html>

@@ -3,8 +3,12 @@
 session_start();
 
 date_default_timezone_set('Europe/Paris');
+
 $db= mysqli_connect("localhost","root","","livreor");
 
+if(!isset($_SESSION["id"])){
+    header("Location:index.php");
+}
 
 if(isset($_POST['valider'])){
     $message=htmlspecialchars($_POST['message']);
@@ -34,7 +38,7 @@ if(isset($_POST['valider'])){
             <button type="submit" name='valider'>Envoyer</button>
         </form>
     </main>
-    <footer></footer>
+    <footer><?php include("footer.php");?></footer>
     
 </body>
 </html>

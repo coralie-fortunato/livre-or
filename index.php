@@ -1,5 +1,6 @@
 <?php
-session_start() 
+session_start() ;
+
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +18,6 @@ session_start()
         <h1>Livre d'or</h1>
     </div></a>
 </main>
-<footer></footer>    
+<footer><?php include("footer.php");?> </footer>    
 </body>
 </html>

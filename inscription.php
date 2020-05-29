@@ -64,7 +64,7 @@ if (isset($_POST["valider"])){
 
         </form>
     </main>
-    <footer></footer>
+    <footer><?php include("footer.php");?></footer>
     
 </body>
 </html>
